@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "hubris": {
+      "url": "https://api.hubris.pw/mcp",
+      "transport": "streamable-http",
+      "headers": {
+        "Authorization": "Bearer sk-gw-..."
+      }
+    }
+  }
+}
