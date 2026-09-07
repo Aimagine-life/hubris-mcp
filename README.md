@@ -2,7 +2,9 @@
 
 [Model Context Protocol](https://modelcontextprotocol.io) server for [Hubris](https://hubris.pw) — an OpenAI-compatible LLM gateway with billing in rubles. Connect Claude Desktop, Claude Code, Cline, Cursor or any other MCP client to a single hosted server and get access to the model catalog, account balance and chat completions.
 
-This repository is a thin, open client-facing wrapper: connection docs, a ready-to-use config and a comparison prompt example. The server itself is a hosted service — no source code to run locally, nothing to install beyond your MCP client.
+There are two ways in: connect your client straight to the hosted endpoint, or run the stdio server in this repository, which declares the same tools locally and forwards calls to that endpoint. The second is what you want for clients that speak stdio only, and for sandboxes that build from a Dockerfile.
+
+Listing the tools needs no credential; only calling one does.
 
 - **Endpoint:** `https://api.hubris.pw/mcp`
 - **Transport:** Streamable HTTP
@@ -29,6 +31,36 @@ This repository is a thin, open client-facing wrapper: connection docs, a ready-
 ## Prompts
 
 - `compare-models {task}` — ready-made prompt for comparing models for a given task.
+
+## Run locally (stdio)
+
+```bash
+npm install && npm run build
+HUBRIS_API_KEY=sk-gw-... node dist/index.js
+```
+
+Or with Docker:
+
+```bash
+docker build -t hubris-mcp .
+docker run -i --rm -e HUBRIS_API_KEY=sk-gw-... hubris-mcp
+```
+
+In an MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "hubris": {
+      "command": "node",
+      "args": ["/path/to/hubris-mcp/dist/index.js"],
+      "env": { "HUBRIS_API_KEY": "sk-gw-..." }
+    }
+  }
+}
+```
+
+`HUBRIS_MCP_URL` overrides the endpoint if you need to point it elsewhere.
 
 ## Connect
 

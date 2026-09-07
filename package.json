@@ -1,0 +1,43 @@
+{
+  "name": "hubris-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for Hubris — an OpenAI-compatible LLM gateway billed in rubles. Catalogue, balance and chat completions over stdio.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "hubris-mcp": "dist/index.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "llm",
+    "gateway",
+    "hubris"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aimagine-life/hubris-mcp.git"
+  },
+  "homepage": "https://hubris.pw",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "@types/node": "^22.0.0"
+  }
+}
