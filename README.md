@@ -1,5 +1,7 @@
 # Hubris MCP
 
+[![smithery badge](https://smithery.ai/badge/hubris/hubris-mcp)](https://smithery.ai/servers/hubris/hubris-mcp) [![npm](https://img.shields.io/npm/v/hubris-mcp)](https://www.npmjs.com/package/hubris-mcp)
+
 [Model Context Protocol](https://modelcontextprotocol.io) server for [Hubris](https://hubris.pw) — an OpenAI-compatible LLM gateway with billing in rubles. Connect Claude Desktop, Claude Code, Cline, Cursor or any other MCP client to a single hosted server and get access to the model catalog, account balance and chat completions.
 
 There are two ways in: connect your client straight to the hosted endpoint, or run the stdio server in this repository, which declares the same tools locally and forwards calls to that endpoint. The second is what you want for clients that speak stdio only, and for sandboxes that build from a Dockerfile.
