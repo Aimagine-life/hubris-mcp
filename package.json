@@ -1,6 +1,7 @@
 {
   "name": "hubris-mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "mcpName": "pw.hubris/hubris-mcp",
   "description": "MCP server for Hubris — an OpenAI-compatible LLM gateway billed in rubles. Catalogue, balance and chat completions over stdio.",
   "license": "MIT",
   "type": "module",
