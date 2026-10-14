@@ -2,11 +2,11 @@
 
 [![smithery badge](https://smithery.ai/badge/hubris/hubris-mcp)](https://smithery.ai/servers/hubris/hubris-mcp) [![npm](https://img.shields.io/npm/v/hubris-mcp)](https://www.npmjs.com/package/hubris-mcp)
 
-[Model Context Protocol](https://modelcontextprotocol.io) server for [Hubris](https://hubris.pw) — an OpenAI-compatible LLM gateway with billing in rubles. Connect Claude Desktop, Claude Code, Cline, Cursor or any other MCP client to a single hosted server and get access to the model catalog, account balance and chat completions.
+[Model Context Protocol](https://modelcontextprotocol.io) server for [Hubris](https://hubris.pw) — an OpenAI-compatible LLM gateway with billing in rubles. Connect Claude Desktop, Claude Code, Cline, Cursor or any other MCP client to a single hosted server and get access to the model catalog, account balance and spending, and every kind of model in it: text, embeddings, rerankers, decision models, images, speech, transcription, video and YouTube transcripts.
 
 There are two ways in: connect your client straight to the hosted endpoint, or run the stdio server in this repository, which declares the same tools locally and forwards calls to that endpoint. The second is what you want for clients that speak stdio only, and for sandboxes that build from a Dockerfile.
 
-Listing the tools needs no credential; only calling one does.
+Listing the tools needs no credential; only calling one does. With `HUBRIS_API_KEY` set, the stdio server takes the tool list live from the hosted endpoint, so it never lags behind new tools; without a key it serves the list bundled with the package.
 
 - **Endpoint:** `https://api.hubris.pw/mcp`
 - **Transport:** Streamable HTTP
@@ -18,10 +18,20 @@ Listing the tools needs no credential; only calling one does.
 | Tool | Description |
 | --- | --- |
 | `models_list` | Full catalog of active models, cursor-paginated. |
-| `models_search` | Filter by capability (vision / reasoning / tools / web_search / audio_in / audio_out / image_gen / transcription), price, context length. |
-| `models_get_pricing` | Pricing for a specific model, in rubles. |
+| `models_search` | Filter by the tool that runs the model (`tool`), capability, price, context length. |
+| `models_get_pricing` | Pricing for a specific model, in rubles; voices for speech models, durations and resolutions for video models. |
 | `balance_get` | Current account balance. |
-| `chat_complete` | LLM chat request — full parity with `POST /v1/chat/completions`. |
+| `usage_get` | Spending over a period: requests, tokens, rubles. |
+| `chat_complete` | LLM chat request — same as `POST /v1/chat/completions`. |
+| `embeddings_create` | Embedding vectors — `POST /v1/embeddings`. |
+| `rerank` | Order documents by relevance to a query — `POST /v1/rerank`. |
+| `decisions_ask` | Yes/no, choice and scale answers with probabilities — `POST /v1/decisions`. |
+| `image_generate` | Draw an image, returned as image content — `POST /v1/images/generations`. |
+| `speech_create` | Text to speech, returned as audio content — `POST /v1/audio/speech`. |
+| `transcription_create` | Speech to text from base64 audio — `POST /v1/audio/transcriptions`. |
+| `video_create` | Start a video generation — `POST /v1/videos`. |
+| `video_get` | Status of a video task; download links once it is ready — `GET /v1/videos/{id}`. |
+| `youtube_transcribe` | Transcript or summary of a YouTube video — `POST /v1/video/transcriptions`. |
 
 ## Resources
 
@@ -29,6 +39,7 @@ Listing the tools needs no credential; only calling one does.
 | --- | --- |
 | `hubris://catalog/models` | Full model catalog as a single JSON document. |
 | `hubris://docs/quickstart` | Quickstart page. |
+| `hubris://videos/{id}/content` | A finished video, linked from `video_get` (hosted endpoint only). |
 
 ## Prompts
 
