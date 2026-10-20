@@ -1,6 +1,6 @@
 # Hubris MCP
 
-[![smithery badge](https://smithery.ai/badge/hubris/hubris-mcp)](https://smithery.ai/servers/hubris/hubris-mcp) [![npm](https://img.shields.io/npm/v/hubris-mcp)](https://www.npmjs.com/package/hubris-mcp)
+[![smithery badge](https://smithery.ai/badge/hubris/hubris-mcp)](https://smithery.ai/servers/hubris/hubris-mcp) [![npm](https://img.shields.io/npm/v/hubris-mcp)](https://www.npmjs.com/package/hubris-mcp) [![Hubris MCP on mcprush](https://mcprush.com/badge/hubris-mcp/score.svg)](https://mcprush.com/to/hubris-mcp?ref=badge)
 
 [Model Context Protocol](https://modelcontextprotocol.io) server for [Hubris](https://hubris.pw) — an OpenAI-compatible LLM gateway with billing in rubles. Connect Claude Desktop, Claude Code, Cline, Cursor or any other MCP client to a single hosted server and get access to the model catalog, account balance and spending, and every kind of model in it: text, embeddings, rerankers, decision models, images, speech, transcription, video and YouTube transcripts.
 
